@@ -1,6 +1,7 @@
 var level = 0;
 var isStarted = false;
 var idRecord = [];
+var clickCount = 0;
 
 $(document).on("keypress", function () {
 
@@ -9,21 +10,27 @@ $(document).on("keypress", function () {
 
         updateLvl();
 
-        idRecord.push(randomId());
-        play(idRecord[idRecord.length-1]);
+        play();
 
         isStarted = true;
     }
 });
 
 $(".btn").on("click", function (event) {
+
     var idBtn = event.target.id;
     console.log(idBtn);
 
-    playSound(idBtn);
+    if (idBtn == idRecord[clickCount]) {
+        console.log("Okay");
+        play();
+        clickCount++;
+    } else {
+        console.log("End");
+        endGame();
+    }
 
-    idRecord.push(randomId());
-    play(idRecord[idRecord.length-1]);
+
 
 });
 
@@ -39,8 +46,6 @@ function playSound(soundName) {
 
 function randomId() {
     var randNumber = Math.floor(Math.random() * 4);
-
-    console.log(idRecord);
 
     switch (randNumber) {
         case 0:
@@ -66,12 +71,35 @@ function randomId() {
     }
 }
 
-function fadeAnimation(idBtn){
-    $("#"+idBtn).fadeOut().fadeIn();
+function fadeAnimation(idBtn) {
+    $("#" + idBtn).fadeOut().fadeIn();
 }
 
-function play(idBtn){
+function play() {
+
+    idRecord.push(randomId());
+    console.log(idRecord);
+
+    var idBtn = idRecord[idRecord.length - 1];
     playSound(idBtn);
     fadeAnimation(idBtn);
+
+}
+
+function endGame() {
+    level = 0;
+    isStarted = false;
+    idRecord = [];
+    clickCount = 0;
+
+    $("body").css("background-color", "red");
+    playSound("wrong");
+    $("#level-title").html("Game Over");
+
+    setTimeout(function () {
+        $("body").css("background-color", "#011F3F");
+        $("#level-title").html("Press A Key to Start");
+    }, 1000);
+
 
 }
