@@ -10,6 +10,7 @@ $(document).on("keypress", function () {
         updateLvl();
 
         idRecord.push(randomId());
+        play(idRecord[idRecord.length-1]);
 
         isStarted = true;
     }
@@ -22,7 +23,7 @@ $(".btn").on("click", function (event) {
     playSound(idBtn);
 
     idRecord.push(randomId());
-    console.log(idRecord);
+    play(idRecord[idRecord.length-1]);
 
 });
 
@@ -38,6 +39,8 @@ function playSound(soundName) {
 
 function randomId() {
     var randNumber = Math.floor(Math.random() * 4);
+
+    console.log(idRecord);
 
     switch (randNumber) {
         case 0:
@@ -61,4 +64,14 @@ function randomId() {
                 //break;
             }
     }
+}
+
+function fadeAnimation(idBtn){
+    $("#"+idBtn).fadeOut().fadeIn();
+}
+
+function play(idBtn){
+    playSound(idBtn);
+    fadeAnimation(idBtn);
+
 }
