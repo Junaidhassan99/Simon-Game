@@ -21,15 +21,31 @@ $(".btn").on("click", function (event) {
     var idBtn = event.target.id;
     console.log(idBtn);
 
-    if (idBtn == idRecord[clickCount]) {
-        console.log("Okay");
-        play();
-        clickCount++;
-        updateLvl();
-    } else {
-        console.log("End");
-        endGame();
+    if (clickCount < idRecord.length) {
+        if (idBtn === idRecord[clickCount]) {
+            console.log("Okay");
+            clickCount++;
+        } else {
+            console.log("End");
+            endGame();
+        }
     }
+    if(clickCount>=idRecord.length){
+        updateLvl();
+        play();
+    }
+
+   
+
+    // if (idBtn == idRecord[clickCount]) {
+    //     console.log("Okay");
+    //     play();
+    //     clickCount++;
+    //     updateLvl();
+    // } else {
+    //     console.log("End");
+    //     endGame();
+    // }
 
 
 
@@ -37,6 +53,7 @@ $(".btn").on("click", function (event) {
 
 function updateLvl() {
     level++;
+    clickCount = 0;
     $("#level-title").html("Level " + level);
 }
 
