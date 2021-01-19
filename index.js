@@ -30,24 +30,11 @@ $(".btn").on("click", function (event) {
             endGame();
         }
     }
-    if(clickCount>=idRecord.length){
+
+    if (clickCount >= idRecord.length) {
         updateLvl();
         play();
     }
-
-   
-
-    // if (idBtn == idRecord[clickCount]) {
-    //     console.log("Okay");
-    //     play();
-    //     clickCount++;
-    //     updateLvl();
-    // } else {
-    //     console.log("End");
-    //     endGame();
-    // }
-
-
 
 });
 
