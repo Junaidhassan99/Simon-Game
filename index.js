@@ -31,7 +31,7 @@ $(".btn").on("click", function (event) {
         }
     }
 
-    if (clickCount >= idRecord.length) {
+    if (clickCount >= idRecord.length && isStarted) {
         updateLvl();
         play();
     }
