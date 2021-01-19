@@ -25,6 +25,7 @@ $(".btn").on("click", function (event) {
         console.log("Okay");
         play();
         clickCount++;
+        updateLvl();
     } else {
         console.log("End");
         endGame();
