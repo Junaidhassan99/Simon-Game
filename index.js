@@ -5,15 +5,16 @@ var clickCount = 0;
 
 $(document).on("keypress", function () {
 
-    if (!isStarted) {
-        console.log("started");
+    startGame();
 
-        updateLvl();
+});
 
-        play();
+$('#level-title').on("click", function () {
 
-        isStarted = true;
-    }
+    console.log("click");
+
+    startGame();
+
 });
 
 $(".btn").on("click", function (event) {
@@ -103,8 +104,20 @@ function endGame() {
 
     setTimeout(function () {
         $("body").css("background-color", "#011F3F");
-        $("#level-title").html("Press A Key to Start");
+        $("#level-title").html("Press Any Key Or CLICK HERE to Start");
     }, 1000);
 
 
+}
+
+function startGame(){
+    if (!isStarted) {
+        console.log("started");
+
+        updateLvl();
+
+        play();
+
+        isStarted = true;
+    }
 }
